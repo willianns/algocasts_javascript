@@ -51,29 +51,41 @@
 //     return isAnagram;
 // }
 
-function buildCharMap(str) {
-    let charMap = {};
-    for (const i of str.replace(/[^\w]/g,'').toLowerCase()) {
-        charMap[i] = charMap[i] + 1 || 1;
-    }
+// function buildCharMap(str) {
+//     let charMap = {};
+//     for (const i of str.replace(/[^\w]/g,'').toLowerCase()) {
+//         charMap[i] = charMap[i] + 1 || 1;
+//     }
 
-    return charMap;
-}
+//     return charMap;
+// }
+
+// function anagrams(stringA, stringB) {
+//     let charMapA = buildCharMap(stringA);
+//     let charMapB = buildCharMap(stringB);
+
+//     if (Object.keys(charMapA).length !== Object.keys(charMapB).length)
+//         return false;
+
+//     for (const key in charMapA) {
+//         if (charMapA[key] !== charMapB[key]) {
+//             return false;
+//         }
+//     }
+
+//     return true;
+// }
 
 function anagrams(stringA, stringB) {
-    let charMapA = buildCharMap(stringA);
-    let charMapB = buildCharMap(stringB);
+    return cleanString(stringA) === cleanString(stringB);
+}
 
-    if (Object.keys(charMapA).length !== Object.keys(charMapB).length)
-        return false;
-
-    for (const key in charMapA) {
-        if (charMapA[key] !== charMapB[key]) {
-            return false;
-        }
-    }
-
-    return true;
+function cleanString(str) {
+    return str.replace(/[^\w]/g, '')
+        .toLowerCase()
+        .split('')
+        .sort()
+        .join('');
 }
 
 module.exports = anagrams;

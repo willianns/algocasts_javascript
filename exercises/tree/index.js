@@ -10,8 +10,86 @@
 // on the tree class.  Each method should accept a
 // function that gets called with each element in the tree
 
-class Node {}
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.children = [];
+    }
+    
+    add(data) { 
+        this.children.push(new Node(data));
+    }
+    
+    remove(data) {
+        this.children = this.children.filter(node => {
+            return node.data !== data;
+        });
+    }
+}
 
-class Tree {}
+class Tree {
+    constructor() {
+        this.root = null;
+    }
+
+    // traverseBF(fn) {
+    //     if (!this.root) {
+    //         return;
+    //     }
+
+    //     const traverse = (branch) => {
+    //         let leafList = [];
+            
+    //         for (const leaf of branch.children) {
+    //             fn(leaf);
+    //             leafList.push(leaf);
+    //         }
+
+    //         for (const leaf of leafList) {
+    //             traverse(leaf);
+    //         }
+    //     };
+
+    //     fn(this.root);
+    //     traverse(this.root);
+    // }
+
+
+    traverseBF(fn) {
+        const arr = [this.root];
+        while (arr.length) {
+            const node = arr.shift();
+
+            arr.push(...node.children);
+            fn(node);
+        }
+    }    
+
+    // traverseDF(fn) {
+    //     if (!this.root) {
+    //         return;
+    //     }
+
+    //     const traverse = (branch) => {
+    //         for (const leaf of branch.children) {
+    //             fn(leaf);
+    //             traverse(leaf);
+    //         }
+    //     };
+
+    //     fn(this.root);
+    //     traverse(this.root);
+    // }    
+
+    traverseDF(fn) {
+        const arr = [this.root];
+        while (arr.length) {
+            const node = arr.shift();
+
+            arr.unshift(...node.children);
+            fn(node);
+        }
+    }       
+}
 
 module.exports = { Tree, Node };

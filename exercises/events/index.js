@@ -20,7 +20,9 @@ class Events {
   // with a given eventName
   trigger(eventName) {
     if (this.events.hasOwnProperty(eventName)) {
-      this.events[eventName].handlers.forEach(handler => handler());
+      this.events[eventName].handlers.forEach(
+        handler => handler()
+      );
     }
   }
 
@@ -28,8 +30,7 @@ class Events {
   // with the given eventName
   off(eventName) {
     if (this.events.hasOwnProperty(eventName)) {
-      const index = this.events[eventName].handlers.length;
-      this.events[eventName].handlers.splice(0, index);
+      this.events[eventName].handlers = [];
     }
   }
 }

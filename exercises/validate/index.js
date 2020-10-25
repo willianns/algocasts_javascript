@@ -6,11 +6,11 @@
 // the parent
 
 function validate(node, min = null, max = null) {
-    if (max != null && node.data > max) {
+    if (max !== null && node.data > max) {
         return false;
     }
 
-    if (min != null && node.data < min) {
+    if (min !== null && node.data < min) {
         return false;
     }
 
